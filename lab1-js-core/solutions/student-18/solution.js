@@ -25,12 +25,12 @@ function simpleTask() {
 // ===== ЗАДАНИЕ 2: Функции =====
 function getReviewerNumber(number, lab) {
     // 2.1 Функция определяющая номер ревьюера для вашей группы по вашему номеру и номеру лабораторной работы
-    return (number + lab) % 30;
+    return ((number + lab - 1) % 30) + 1;
 }
 
 function getVariant(number, variants) {
     // 2.2 Функция определяющая номер варианта, исходя из количества вариантов
-    return number % variants;
+    return ((number - 1) % variants) + 1;
 }
 
 function calculate(a, b, operation) {
