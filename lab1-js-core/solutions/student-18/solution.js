@@ -13,7 +13,7 @@ function simpleTask() {
     const sym = Symbol("n");
     // 1.2 Выведите типы всех переменных
     console.log("type:", typeof boo);
-    console.log("type null:", typeof value !== 'object' && value === null);
+    console.log("type null:", typeof value === 'object' && value === null);
     console.log("tybe object:", typeof obj === 'object' && obj !== 'null');
     console.log("type:", typeof defined);
     console.log("type:", typeof numb);
@@ -451,13 +451,57 @@ function runTests() {
     console.log(`Ревьюер номер ${getReviewerNumber(18, 1)}`);
     console.log(`Вариант номер ${getVariant(18, 4)}`);
     console.log();
+    simpleTask();
+    console.log();
+    processArrays();
+    console.log();
 
     // Тест 2: calculate
     console.assert(calculate(10, 5, '+') === 15, "Тест калькулятора провален");
+    console.assert(calculate(10, 5, '-') === 5, "Тест калькулятора (-) провален");
+    console.assert(calculate(10, 5, '*') === 50, "Тест калькулятора (*) провален");
+    console.assert(calculate(10, 5, '/') === 2, "Тест калькулятора (/) провален");
+    console.assert(calculate(10, 0, '/') === "Ошибка: На ноль делить нельзя", "Тест деления на ноль провален");
+    console.assert(calculate(10, 5, '%') === 'Не удалось определить операцию: "%"', "Тест неверной операции провален");
     
+    console.assert(calculateArea("circle", 10) === Math.PI * 100, "Тест площади круга провален");
+    console.assert(calculateArea("rectangle", 5, 3) === 15, "Тест площади прямоугольника провален");
+    console.assert(calculateArea("triangle", 6, 4) === 12, "Тест площади треугольника провален");
+
+    console.assert(calculateArea("circle", -5).includes("Ошибка"), "Тест отрицательного радиуса провален");
+    console.assert(calculateArea("circle").includes("Ошибка"), "Тест круга без параметров провален");
+    console.assert(calculateArea("rectangle", 5).includes("Ошибка"), "Тест нехватки сторон провален");
+    console.assert(calculateArea("triangle", -6, 4).includes("Ошибка"), "Тест отрицательного основания тр-ка провален");
+    console.assert(calculateArea("square", 5).includes("Неизвестная фигура"), "Тест неизвестная фигура провален");
+    
+    console.log(`Рандомное число: ${getRandomNumber(1, 100)}`);
+    console.log();
+    console.assert(reverseString("hello") === "olleh", "reverseString провален");
+    console.assert(reverseString("") === "", "reverseString пустой строки провален");
+
     // Тест 3: taskManager
     console.assert((taskManager.getStats() || {}).total === 3, "Тест taskManager провален");
     
+    taskManager.addTask("Новая тестовая задача", "low");
+    console.assert(taskManager.getStats().total === 4, "Добавление задачи провалено");
+    
+    taskManager.completeTask(1);
+    console.assert(taskManager.getStats().completed === 2, "Завершение задачи провалено");
+    
+    taskManager.deleteTask(4);
+    console.assert(taskManager.getStats().total === 3, "Удаление задачи провалено");
+
+    console.assert(
+        book.getInfo() === 'Название книги: "Название книги", Имя автора: Имя автора, Год выпуска: 1950, Количество страниц: 250', "book.getInfo провален"
+    );
+    console.assert(book.toggleAvailability() === false, "book.toggleAvailability false провален");
+    console.assert(book.toggleAvailability() === true, "book.toggleAvailability true провален");
+    console.assert(student.getAverageGrade() === 90, "student.getAverageGrade провален");
+    console.assert(
+        student.addGrade("physics", 88) === "Добавлен предмет physics с оценкой 88",
+        "student.addGrade провален"
+    );
+
     // Тест 4: классы и наследование
     const { Vehicle, Car, ElectricCar, createVehicleFactory } = taskClasses();
     const vehicle = new Vehicle('Toyota', 'Camry', 2015);
@@ -481,8 +525,15 @@ function runTests() {
     myNewCar.displayInfo();
     console.log();
     console.log('Всего создано транспортных средств:', Vehicle.getTotalVehicles());
-    
-    // Добавьте остальные тесты...
+    console.assert(Vehicle.getTotalVehicles() === 5, "Тест getTotalVehicles провален");
+    console.assert(Vehicle.compareAge(vehicle, testVehicle) === 5, "Тест Vehicle.compareAge провален");
+
+    vehicle.year = 2020;
+    console.assert(vehicle.year === 2020, "Тест валидного знач-я провален");
+    vehicle.year = 3000; // дб заигнорено
+    console.assert(vehicle.year === 2020, "Тест невалид. знач-я провален");
+
+    console.assert(electricCar.calculateRange() === 450, "Тест электр. кар провален");
 
     // Тест 5: taskManager
     taskManager.addTask("Новая тестовая задача", "low");
