@@ -46,13 +46,13 @@ kai-sepia-extension/
 
 ### До применения стиля
 
-![Исходный вид главной страницы](lab2-dom/solutions/student-18/style-plugin/images/kai-main-before.png)
-![Исходный вид вкладки студента](lab2-dom/solutions/student-18/style-plugin/images/kai-student-before.png)
+![Исходный вид главной страницы](lab2-dom/solutions/student-18/images/kai-main-before.png)
+![Исходный вид вкладки студента](lab2-dom/solutions/student-18/images/kai-student-before.png)
 
 ### После применения стиля Sepia
 
-![Стилизованный вид главной страницы](lab2-dom/solutions/student-18/style-plugin/images/kai-main-after.png)
-![Стилизованный вид вкладки студента](lab2-dom/solutions/student-18/style-plugin/images/kai-student-after.png)
+![Стилизованный вид главной страницы](lab2-dom/solutions/student-18/images/kai-main-after.png)
+![Стилизованный вид вкладки студента](lab2-dom/solutions/student-18/images/kai-student-after.png)
 
 ## Технические детали
 
